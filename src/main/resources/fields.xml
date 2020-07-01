@@ -521,7 +521,7 @@
       class="org.jpos.iso.IFA_LLCHAR"/>
   <isofield
       id="103"
-      length="10"
+      length="13"
       name="ACCOUNT IDENTIFICATION 2"
       class="org.jpos.iso.IFA_LLCHAR"/>
   <isofield
