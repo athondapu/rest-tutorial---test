@@ -36,7 +36,17 @@ public class UnpackISOMessage {
             //iso.printISOMessage(isoMsg);
         } catch (Exception e) {
             e.printStackTrace();
+
+            //display the error in json
+            Map<String, Object> respError = new HashMap<>();
             respError.put("success", "false");
+            respError.put("ErrorMessage", e);
+
+            Response.ResponseBuilder rbError = Response.ok(respError,
+                    MediaType.APPLICATION_JSON).status(Response.Status.OK);
+            return rbError.build();
+
+
         }
 
         //building the actual json response
