@@ -28,7 +28,7 @@ public class UnpackISOMessage {
             @PathParam("IsoMsgFromGet") String tMsgFromGet,
             String tMsgFromBody
     ) {
-
+        //removed the
         UnpackISOMessage iso = new UnpackISOMessage();
         ISOMsg isoMsg = null;
         try {
@@ -56,7 +56,8 @@ public class UnpackISOMessage {
     public ISOMsg parseISOMessage() throws Exception {
         String message= "0200FABF469F29E0C12000000000040000221646603898000201580120000000000040000000000005770411101202714425000136931012000411220404110411605190200100C00000000C00000000C00000000C0000000006476117374660389800020158D22042011384200106210910110013693201TERMID01HCB_CODE       HEYZIEL                MAURITIUS      MU480936004151001000000012591313000000516310152001012000001040002682008040000000000VB12ISS     CALT24R15Snk013693013693CALVisaGrp                48000182218Postilion:MetaData270218Postilion:OBS:dCvv111214TRANSACTION_ID111220OriginalPosEntryMode111218Postilion:OBS:dCvv110214TRANSACTION_ID215309101367222006220OriginalPosEntryMode149020";
 
-        System.out.printf("Message = %s%n", message);
+        //\"{string}" , {newline}
+        System.out.printf("\"Message\": \"%s\",%n", message);
         try {
             // Load package from resources directory.
             InputStream is = getClass().getResourceAsStream("/fields.xml");
@@ -70,12 +71,13 @@ public class UnpackISOMessage {
         }
     }
 
+    //add "" double quote to jsonify the data elements
     public void printISOMessage(ISOMsg isoMsg) {
         try {
-            System.out.printf("MTI = %s%n", isoMsg.getMTI());
+            System.out.printf("\"MTI\":\"%s\",%n", isoMsg.getMTI());
             for (int i = 1; i <= isoMsg.getMaxField(); i++) {
                 if (isoMsg.hasField(i)) {
-                    System.out.printf("Field (%s) = %s%n", i, isoMsg.getString(i));
+                    System.out.printf("\"%s\": \"%s\",%n", i, isoMsg.getString(i));
                 }
             }
         } catch (ISOException e) {
