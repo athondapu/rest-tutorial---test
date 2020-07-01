@@ -32,7 +32,7 @@ public class UnpackISOMessage {
         UnpackISOMessage iso = new UnpackISOMessage();
         ISOMsg isoMsg = null;
         try {
-             isoMsg = iso.parseISOMessage();
+             isoMsg = iso.parseISOMessage(tMsgFromBody);
             iso.printISOMessage(isoMsg);
         } catch (Exception e) {
             e.printStackTrace();
@@ -42,8 +42,8 @@ public class UnpackISOMessage {
         Map<String, Object> resp = new HashMap<>();
         resp.put("success", "true");
         //resp.put("Name", name);
-        resp.put("IsoMsgFromGet", isoMsg);
-        resp.put("IsoMsgFromBody", tMsgFromBody);
+        resp.put("IsoMsgFromBody", isoMsg);
+        resp.put("IsoMsgFromGet", tMsgFromGet);
 
         Response.ResponseBuilder rb = Response.ok(resp,
                 MediaType.APPLICATION_JSON).status(Response.Status.OK);
@@ -53,8 +53,8 @@ public class UnpackISOMessage {
 
 
 
-    public ISOMsg parseISOMessage() throws Exception {
-        String message= "0200FABF469F29E0C12000000000040000221646603898000201580120000000000040000000000005770411101202714425000136931012000411220404110411605190200100C00000000C00000000C00000000C0000000006476117374660389800020158D22042011384200106210910110013693201TERMID01HCB_CODE       HEYZIEL                MAURITIUS      MU480936004151001000000012591313000000516310152001012000001040002682008040000000000VB12ISS     CALT24R15Snk013693013693CALVisaGrp                48000182218Postilion:MetaData270218Postilion:OBS:dCvv111214TRANSACTION_ID111220OriginalPosEntryMode111218Postilion:OBS:dCvv110214TRANSACTION_ID215309101367222006220OriginalPosEntryMode149020";
+    public ISOMsg parseISOMessage(String message) throws Exception {
+//        String message= "0200FABF469F29E0C12000000000040000221646603898000201580120000000000040000000000005770411101202714425000136931012000411220404110411605190200100C00000000C00000000C00000000C0000000006476117374660389800020158D22042011384200106210910110013693201TERMID01HCB_CODE       HEYZIEL                MAURITIUS      MU480936004151001000000012591313000000516310152001012000001040002682008040000000000VB12ISS     CALT24R15Snk013693013693CALVisaGrp                48000182218Postilion:MetaData270218Postilion:OBS:dCvv111214TRANSACTION_ID111220OriginalPosEntryMode111218Postilion:OBS:dCvv110214TRANSACTION_ID215309101367222006220OriginalPosEntryMode149020";
 
         //\"{string}" , {newline}
         System.out.printf("\"Message\": \"%s\",%n", message);
