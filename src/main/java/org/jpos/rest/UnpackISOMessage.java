@@ -32,7 +32,8 @@ public class UnpackISOMessage {
         UnpackISOMessage iso = new UnpackISOMessage();
         ISOMsg isoMsg = null;
         try {
-            isoMsg = iso.parseISOMessage(tMsgFromBody);
+            // use parameter from the body or the url GET tMsgFromGet/tMsgFromBody
+            isoMsg = iso.parseISOMessage(tMsgFromGet);
             //iso.printISOMessage(isoMsg);
         } catch (Exception e) {
             e.printStackTrace();
