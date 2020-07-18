@@ -45,7 +45,7 @@ public class UnpackISOMessage {
 
             Response.ResponseBuilder rbError = Response.ok(respError,
                     MediaType.APPLICATION_JSON).status(Response.Status.OK);
-            return rbError.build();
+            return rbError.header("Access-Control-Allow-Origin", "*").build();
 
 
         }
@@ -67,6 +67,7 @@ public class UnpackISOMessage {
 
                     //THE ISO DATA ELEMENTS
                     resp.put("MTI",isoMsg.getMTI());
+
                     resp.put("1",isoMsg.getString(1));
                     resp.put("2",isoMsg.getString(2));
                     resp.put("3",isoMsg.getString(3));
@@ -210,7 +211,7 @@ public class UnpackISOMessage {
 
         Response.ResponseBuilder rb = Response.ok(resp,
                 MediaType.APPLICATION_JSON).status(Response.Status.OK);
-        return rb.build();
+        return rb.header("Access-Control-Allow-Origin", "*").build();
     }
 
 
