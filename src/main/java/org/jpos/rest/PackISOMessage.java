@@ -33,19 +33,19 @@ public class PackISOMessage {
         ) {
 
             PackISOMessage iso = new PackISOMessage();
+            String message = null;
             try {
-                String message = iso.buildISOMessage();
-                System.out.printf("Message = %s", message);
+                message = iso.buildISOMessage();
+                System.out.printf("\"Message\": \"%s\",%n", message);
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
 
-
             Map<String, Object> resp = new HashMap<>();
             resp.put("success", "true");
             //resp.put("Name", name);
-            resp.put("IsoMsgFromGet", tMsgFromGet);
+            resp.put("IsoMsgFromGet", message);
             resp.put("IsoMsgFromBody", tMsgFromBody);
             Response.ResponseBuilder rb = Response.ok(resp,
                     MediaType.APPLICATION_JSON).status(Response.Status.OK);
