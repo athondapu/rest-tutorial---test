@@ -72,14 +72,22 @@ public class PackISOMessage {
                 System.out.printf("\"Message\": \"%s\",%n", message);
             } catch (Exception e) {
                 e.printStackTrace();
+                //display the error in json
+                Map<String, Object> respError = new HashMap<>();
+                respError.put("success", "false");
+                respError.put("ErrorMessage", e);
+
+                Response.ResponseBuilder rbError = Response.ok(respError,
+                        MediaType.APPLICATION_JSON).status(Response.Status.OK);
+                return rbError.header("Access-Control-Allow-Origin", "*").build();
             }
 
 
             Map<String, Object> resp = new HashMap<>();
             resp.put("success", "true");
             //resp.put("Name", name);
-            resp.put("IsoMsgFromGet", message);
-            resp.put("IsoMsgFromBody", tMsgFromBody);
+            resp.put("PackedIsoMsg", message);
+            //resp.put("IsoMsgFromBody", tMsgFromBody);
             Response.ResponseBuilder rb = Response.ok(resp,
                     MediaType.APPLICATION_JSON).status(Response.Status.OK);
             return rb.build();
