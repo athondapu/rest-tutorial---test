@@ -53,7 +53,7 @@ public class UnpackISOMessage {
         //building the actual json response
         Map<String, Object> resp = new HashMap<>();
 
-        resp.put("ISO8583msg", tMsgFromBody);
+        //resp.put("ISO8583msg", tMsgFromBody);
         resp.put("success", "true");
         //resp.put("Name", name);
 
